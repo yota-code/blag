@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+
+source_DIR=${0:A:h}
+
+function push_pythonpath() {
+	pth=$1:A
+	echo "+ ${pth}"
+	export PATH=${pth}/script:$PATH
+	export PYTHONPATH=${pth}/package:$PYTHONPATH
+}
+
+export BLAG_root_DIR=${source_DIR}
+export BLAG_content_DIR=${BLAG_root_DIR}/content
+export BLAG_static_DIR=${BLAG_root_DIR}/static
+
+push_pythonpath ${source_DIR}/../oaktree
+push_pythonpath ${source_DIR}/../marccup
+push_pythonpath ${source_DIR}
+
+rehash
+

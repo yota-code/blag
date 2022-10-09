@@ -1,0 +1,79 @@
+body {
+	font-family: 'Crimson Pro', serif;
+	background-color:white;
+	/*font-size: 110%;*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Montserrat', sans-serif;
+	/* font-family: 'Alice', serif; */
+	/* font-family: 'Arima', cursive; */
+	/* font-family: 'Quando', serif; */
+}
+
+article h1 {
+	font-size:177%;
+}
+article h2 {
+	font-size:161%;
+}
+article h3 {
+	font-size:146%;
+}
+article h4 {
+	font-size:133%;
+}
+article h5 {
+	font-size:121%;
+}
+article h6 {
+	font-size:110%;
+}
+
+table {
+	border-collapse: collapse;
+	background-color: #DDDDDD;
+	width:100%;
+}
+
+td {
+	border: 3px white solid;
+	padding: 1em 1em;
+}
+
+#chrono tr:hover {
+	background-color: #AAAAAA;
+}
+
+.chrono_datetime {
+	text-align: right;
+}
+
+#main_title img {
+	width:4em;
+}
+#main_title span {
+	position:relative;
+	top: -2em;
+	font-size:120%
+}
+
+#main_content {
+	min-width: 50%;
+	max-width:43em;
+	border: 1px blue solid;
+	margin:auto;
+	padding: 1em;
+}
+
+#main_content > h1 {
+	font-size: 150%;
+	background-color: black;
+	color: white;
+	padding: 0.5em;
+}
+
+article {
+	border: 1px red solid;
+	padding:1em;
+}

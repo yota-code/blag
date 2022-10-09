@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+
+""" a page is a coherent set of sections """
+
+import sys
+
+from cc_pathlib import Path
+
+import oaktree
+
+import oaktree.proxy.braket
+import oaktree.proxy.html5
+
+import marccup
+import marccup.parser.page
+
+import blag.composer
+
+def page_to_html(txt_or_pth, debug=False) :
+
+	pth = None
+	if isinstance(txt_or_pth, str) :
+		txt = txt_or_pth
+		debug = False
+	elif txt_or_pth.is_file() and txt_or_pth.suffix == '.mcp' :
+		pth = txt_or_pth
+		txt = pth.read_text()
+	else :
+		raise ValueError
+
+	m = marccup.parser.page.PageParser(debug_dir=(pth.parent if (pth is not None) and (debug) else None))
+	o = m.parse(txt)
+
+	if debug :
+		b = oaktree.proxy.braket.BraketProxy(indent='\t')
+		b.save(o, pth.with_suffix('.bkt'))
+
+	c = blag.composer.Html5Composer().compose(o)
+	h = oaktree.proxy.html5.Html5Proxy(indent=None, fragment=True)
+
+	if debug :
+		h.save(c, pth.with_suffix('.html'))
+
+	return h.save(c)
+
+if __name__ == '__main__' :
+
+	for fnm in sys.argv[1:] :
+		pth = Path(fnm).resolve()
+		o = page_to_html(pth, True)
